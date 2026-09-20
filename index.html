@@ -1,1 +1,1187 @@
-hello github page
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Jiwon | Data Analyst Portfolio</title>
+
+  <style>
+    /* =========================
+       기본 설정
+    ========================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Pretendard,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: #f8f9fb;
+      color: #1f2937;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: 0 auto;
+    }
+
+
+    /* =========================
+       NAV
+    ========================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .nav-container {
+      height: 70px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 20px;
+      color: #1e3a5f;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 32px;
+
+      list-style: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav-menu a:hover {
+      color: #2563eb;
+    }
+
+
+    /* =========================
+       HOME
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+
+      padding-top: 70px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f8fafc 0%,
+          #eef4fb 100%
+        );
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero-small {
+      color: #2563eb;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(46px, 7vw, 78px);
+      line-height: 1.1;
+      color: #172033;
+
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: #2563eb;
+    }
+
+    .hero-description {
+      max-width: 680px;
+
+      font-size: 19px;
+      color: #5b6472;
+
+      margin-bottom: 40px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+
+      padding: 13px 24px;
+      border-radius: 8px;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      color: white;
+      background: #2563eb;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid #cbd5e1;
+      background: white;
+    }
+
+    .btn-outline:hover {
+      border-color: #2563eb;
+      color: #2563eb;
+    }
+
+
+    /* =========================
+       공통 SECTION
+    ========================= */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-title {
+      margin-bottom: 55px;
+    }
+
+    .section-label {
+      color: #2563eb;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      letter-spacing: 1px;
+      text-transform: uppercase;
+
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      color: #172033;
+    }
+
+    .section-title p {
+      color: #6b7280;
+
+      max-width: 650px;
+      margin-top: 12px;
+    }
+
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    #about {
+      background: white;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+
+      gap: 70px;
+    }
+
+    .about-text p {
+      margin-bottom: 18px;
+      color: #4b5563;
+    }
+
+    .about-highlight {
+      font-weight: 600;
+      color: #172033;
+    }
+
+    .about-info {
+      display: grid;
+      gap: 20px;
+    }
+
+    .info-box {
+      background: #f8fafc;
+
+      padding: 22px;
+      border-radius: 10px;
+
+      border: 1px solid #e5e7eb;
+    }
+
+    .info-box strong {
+      display: block;
+
+      color: #2563eb;
+      margin-bottom: 5px;
+    }
+
+
+    /* =========================
+       SKILLS
+    ========================= */
+
+    #skills {
+      background: #f8f9fb;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: white;
+
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+
+      padding: 28px;
+
+      transition: 0.2s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+
+      box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.07);
+    }
+
+    .skill-card h3 {
+      margin-bottom: 14px;
+      color: #172033;
+    }
+
+    .skill-card p {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    #projects {
+      background: white;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 28px;
+    }
+
+    .project-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+
+      overflow: hidden;
+      background: white;
+
+      transition: 0.25s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    .project-thumbnail {
+      height: 190px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #dbeafe,
+          #eff6ff
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #2563eb;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    .project-content {
+      padding: 28px;
+    }
+
+    .project-category {
+      color: #2563eb;
+      font-size: 13px;
+      font-weight: 700;
+
+      margin-bottom: 8px;
+    }
+
+    .project-content h3 {
+      font-size: 22px;
+
+      margin-bottom: 12px;
+      color: #172033;
+    }
+
+    .project-content > p {
+      color: #6b7280;
+
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      background: #f1f5f9;
+
+      padding: 5px 10px;
+      border-radius: 5px;
+
+      font-size: 12px;
+      color: #475569;
+    }
+
+    .project-link {
+      color: #2563eb;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+
+    /* =========================
+       EXPERIENCE
+    ========================= */
+
+    #experience {
+      background: #f8f9fb;
+    }
+
+    .timeline {
+      max-width: 800px;
+    }
+
+    .timeline-item {
+      position: relative;
+
+      padding-left: 28px;
+      padding-bottom: 45px;
+
+      border-left: 2px solid #dbe3ee;
+    }
+
+    .timeline-item::before {
+      content: "";
+
+      position: absolute;
+      left: -7px;
+      top: 5px;
+
+      width: 12px;
+      height: 12px;
+
+      border-radius: 50%;
+
+      background: #2563eb;
+    }
+
+    .timeline-date {
+      color: #2563eb;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      margin-bottom: 5px;
+    }
+
+    .timeline-item h3 {
+      color: #172033;
+      margin-bottom: 5px;
+    }
+
+    .timeline-item p {
+      color: #6b7280;
+    }
+
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    #contact {
+      background: #172033;
+      color: white;
+
+      text-align: center;
+    }
+
+    #contact .section-label {
+      color: #60a5fa;
+    }
+
+    #contact h2 {
+      color: white;
+    }
+
+    #contact p {
+      color: #cbd5e1;
+
+      max-width: 600px;
+
+      margin: 15px auto 30px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      padding: 12px 22px;
+
+      border: 1px solid #475569;
+      border-radius: 7px;
+
+      transition: 0.2s;
+    }
+
+    .contact-link:hover {
+      background: white;
+      color: #172033;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #101827;
+
+      color: #94a3b8;
+
+      text-align: center;
+
+      padding: 25px;
+
+      font-size: 13px;
+    }
+
+
+    /* =========================
+       모바일
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      .nav-menu {
+        display: none;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .skill-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAV
+========================= -->
+
+<nav>
+
+  <div class="container nav-container">
+
+    <a href="#home" class="logo">
+      JIWON.
+    </a>
+
+    <ul class="nav-menu">
+
+      <li>
+        <a href="#about">About</a>
+      </li>
+
+      <li>
+        <a href="#skills">Skills</a>
+      </li>
+
+      <li>
+        <a href="#projects">Projects</a>
+      </li>
+
+      <li>
+        <a href="#experience">Experience</a>
+      </li>
+
+      <li>
+        <a href="#contact">Contact</a>
+      </li>
+
+    </ul>
+
+  </div>
+
+</nav>
+
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section class="hero" id="home">
+
+  <div class="container">
+
+    <div class="hero-content">
+
+      <p class="hero-small">
+        DATA ANALYST PORTFOLIO
+      </p>
+
+      <h1>
+        데이터에서<br>
+        <span>의미 있는 판단</span>을 찾습니다.
+      </h1>
+
+      <p class="hero-description">
+        통계적 사고를 바탕으로 데이터를 분석하고,
+        분석 결과를 실제 문제와 의사결정에 연결하는
+        데이터 분석가를 지향합니다.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a
+          href="#projects"
+          class="btn btn-primary"
+        >
+          프로젝트 보기
+        </a>
+
+        <a
+          href="https://github.com/jjii-wonn11"
+          target="_blank"
+          class="btn btn-outline"
+        >
+          GitHub
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="section-label">
+        About
+      </div>
+
+      <h2>
+        안녕하세요, 데이터 분석가를 꿈꾸는 지원입니다.
+      </h2>
+
+    </div>
+
+
+    <div class="about-grid">
+
+      <div class="about-text">
+
+        <p>
+          통계학을 전공하며 회귀분석, 확률론,
+          고차원자료분석 등 통계적 분석 방법을 공부했습니다.
+        </p>
+
+        <p>
+          프로젝트에서는 단순히 높은 성능의 모델을 만드는 것보다
+          <span class="about-highlight">
+            ‘무엇을 발견하고 어떻게 활용할 것인가’
+          </span>
+          를 중요하게 생각합니다.
+        </p>
+
+        <p>
+          데이터의 특성과 분석 목적에 따라
+          적절한 분석 방법과 평가 기준을 선택하고,
+          분석 결과를 실제 의사결정으로 연결할 수 있는
+          데이터 분석가로 성장하고 있습니다.
+        </p>
+
+      </div>
+
+
+      <div class="about-info">
+
+        <div class="info-box">
+          <strong>Major</strong>
+          Statistics
+        </div>
+
+        <div class="info-box">
+          <strong>Interest</strong>
+          Data Analysis · Data Mining · Modeling
+        </div>
+
+        <div class="info-box">
+          <strong>Tools</strong>
+          Python · R · SAS · SQL
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section id="skills">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="section-label">
+        Skills
+      </div>
+
+      <h2>
+        Skills & Tools
+      </h2>
+
+      <p>
+        데이터 전처리부터 통계 분석,
+        모델링과 결과 해석까지 프로젝트를 수행해왔습니다.
+      </p>
+
+    </div>
+
+
+    <div class="skill-grid">
+
+
+      <div class="skill-card">
+
+        <h3>Python</h3>
+
+        <p>
+          Pandas · NumPy · Scikit-learn을 활용한
+          데이터 전처리, EDA, 머신러닝 모델링
+        </p>
+
+      </div>
+
+
+      <div class="skill-card">
+
+        <h3>R</h3>
+
+        <p>
+          통계 분석, 회귀분석,
+          고차원 데이터 분석 및 시각화
+        </p>
+
+      </div>
+
+
+      <div class="skill-card">
+
+        <h3>SQL</h3>
+
+        <p>
+          데이터 조회 및 가공,
+          JOIN · GROUP BY · Window Function 활용
+        </p>
+
+      </div>
+
+
+      <div class="skill-card">
+
+        <h3>SAS</h3>
+
+        <p>
+          통계 데이터 처리 및 분석을 위한
+          SAS 활용 경험
+        </p>
+
+      </div>
+
+
+      <div class="skill-card">
+
+        <h3>Statistics</h3>
+
+        <p>
+          회귀분석 · 로지스틱 회귀 · 가설검정 ·
+          차원축소 · 통계적 모델링
+        </p>
+
+      </div>
+
+
+      <div class="skill-card">
+
+        <h3>Machine Learning</h3>
+
+        <p>
+          Decision Tree · SMOTE ·
+          Classification · Model Evaluation
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     PROJECTS
+========================= -->
+
+<section id="projects">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="section-label">
+        Projects
+      </div>
+
+      <h2>
+        Selected Projects
+      </h2>
+
+      <p>
+        분석 방법 자체보다 문제를 어떻게 정의하고
+        결과를 어떻게 활용할 수 있는지를 중심으로
+        프로젝트를 구성했습니다.
+      </p>
+
+    </div>
+
+
+    <div class="project-grid">
+
+
+      <!-- 프로젝트 1 -->
+
+      <div class="project-card">
+
+        <div class="project-thumbnail">
+          WEATHER × CONSUMPTION
+        </div>
+
+        <div class="project-content">
+
+          <div class="project-category">
+            DATA ANALYSIS
+          </div>
+
+          <h3>
+            날씨가 지갑을 흔들 때
+          </h3>
+
+          <p>
+            날씨 변화와 지역별 소비 패턴의 관계를 분석하고,
+            지역에 따라 날씨의 영향이 어떻게 달라지는지
+            탐색한 데이터 분석 프로젝트입니다.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Data Analysis</span>
+            <span class="tag">Visualization</span>
+            <span class="tag">Card Data</span>
+          </div>
+
+          <a href="#" class="project-link">
+            프로젝트 자세히 보기 →
+          </a>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- 프로젝트 2 -->
+
+      <div class="project-card">
+
+        <div class="project-thumbnail">
+          CUSTOMER CHURN
+        </div>
+
+        <div class="project-content">
+
+          <div class="project-category">
+            MACHINE LEARNING
+          </div>
+
+          <h3>
+            은행 고객 이탈 예측
+          </h3>
+
+          <p>
+            불균형 고객 데이터를 분석하고
+            SMOTE 적용 전후 모델 성능을 비교하여
+            이탈 고객 탐지를 위한 적절한 평가 기준을 검토했습니다.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">SMOTE</span>
+            <span class="tag">Decision Tree</span>
+            <span class="tag">Recall</span>
+          </div>
+
+          <a href="#" class="project-link">
+            프로젝트 자세히 보기 →
+          </a>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- 프로젝트 3 -->
+
+      <div class="project-card">
+
+        <div class="project-thumbnail">
+          HIGH-DIMENSIONAL DATA
+        </div>
+
+        <div class="project-content">
+
+          <div class="project-category">
+            STATISTICAL MODELING
+          </div>
+
+          <h3>
+            대출 승인 예측 및 차원축소
+          </h3>
+
+          <p>
+            범주형 변수의 더미변수화로 증가한
+            고차원 데이터를 대상으로 PCA와 DCOV-SDR을 비교하고
+            로지스틱 회귀를 통해 승인 여부를 예측했습니다.
+          </p>
+
+          <div class="tags">
+            <span class="tag">R</span>
+            <span class="tag">PCA</span>
+            <span class="tag">DCOV-SDR</span>
+            <span class="tag">Logistic Regression</span>
+          </div>
+
+          <a href="#" class="project-link">
+            프로젝트 자세히 보기 →
+          </a>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- 프로젝트 4 -->
+
+      <div class="project-card">
+
+        <div class="project-thumbnail">
+          NEXT PROJECT
+        </div>
+
+        <div class="project-content">
+
+          <div class="project-category">
+            DATA PROJECT
+          </div>
+
+          <h3>
+            새로운 프로젝트
+          </h3>
+
+          <p>
+            추후 추가할 프로젝트 영역입니다.
+            프로젝트가 추가되면 동일한 형식으로
+            포트폴리오를 확장할 수 있습니다.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Coming Soon</span>
+          </div>
+
+          <span class="project-link">
+            Coming soon
+          </span>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     EXPERIENCE
+========================= -->
+
+<section id="experience">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="section-label">
+        Experience
+      </div>
+
+      <h2>
+        Experience
+      </h2>
+
+    </div>
+
+
+    <div class="timeline">
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-date">
+          WORK EXPERIENCE
+        </div>
+
+        <h3>
+          통계 분석 업무
+        </h3>
+
+        <p>
+          데이터 분석, 분석 결과 검토,
+          고객사 커뮤니케이션 및
+          신규 구성원 업무 교육 경험
+        </p>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-date">
+          UNIVERSITY
+        </div>
+
+        <h3>
+          통계학 전공
+        </h3>
+
+        <p>
+          회귀분석, 확률론,
+          고차원자료분석 등
+          통계 및 데이터 분석 관련 과목 이수
+        </p>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-date">
+          CAMPUS EXPERIENCE
+        </div>
+
+        <h3>
+          교내 근로
+        </h3>
+
+        <p>
+          교수 및 교직원과 소통하며
+          수업 운영과 행정 업무를 수행
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section id="contact">
+
+  <div class="container">
+
+    <div class="section-label">
+      Contact
+    </div>
+
+    <h2>
+      함께 데이터의 의미를 찾아가고 싶습니다.
+    </h2>
+
+    <p>
+      프로젝트와 분석 경험에 대한 자세한 내용은
+      GitHub와 포트폴리오에서 확인할 수 있습니다.
+    </p>
+
+    <div class="contact-links">
+
+      <a
+        href="https://github.com/jjii-wonn11"
+        target="_blank"
+        class="contact-link"
+      >
+        GitHub
+      </a>
+
+      <!-- 본인 이메일로 수정 -->
+      <a
+        href="mailto:YOUR_EMAIL@example.com"
+        class="contact-link"
+      >
+        Email
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<footer>
+
+  © 2026 Jiwon.
+  All rights reserved.
+
+</footer>
+
+
+</body>
+</html>
