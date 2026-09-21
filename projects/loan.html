@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="MD-SDR과 PCA를 비교한 대출 승인 예측 프로젝트" />
+    <title>대출 승인 예측과 차원축소 | Jiwon Portfolio</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../script.js" defer></script>
+  </head>
+  <body class="detail-page loan">
+    <a class="skip-link" href="#main">본문 바로가기</a>
+    <nav class="site-nav detail-nav" aria-label="주요 메뉴">
+      <div class="container nav-inner">
+        <a class="logo" href="../index.html"><span class="logo-mark" aria-hidden="true"></span>JIWON.DATA</a>
+        <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false"><span aria-hidden="true"></span></button>
+        <ul class="nav-menu">
+          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="#result">Results</a></li>
+          <li><a href="#resources">Files</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main id="main">
+      <header class="detail-hero">
+        <div class="container">
+          <a class="back-link" href="../index.html#projects">← 프로젝트 목록으로</a>
+          <div class="detail-layout">
+            <div>
+              <p class="detail-kicker">High-dimensional Data Project</p>
+              <h1>대출 승인 예측과 감독형 차원축소</h1>
+              <p class="detail-lead">
+                범주형 변수를 더미변수로 변환하며 차원이 커진 대출 데이터에서 PCA와 MD-SDR을
+                비교했습니다. 변수의 분산보다 대출 승인 여부와 관련된 정보가 얼마나 보존되는지를
+                기준으로 차원축소 방법을 평가했습니다.
+              </p>
+            </div>
+            <dl class="detail-meta">
+              <div><dt>Data</dt><dd>1,000명 표본</dd></div>
+              <div><dt>Tool</dt><dd>R</dd></div>
+              <div><dt>Method</dt><dd>MD-SDR · PCA</dd></div>
+              <div><dt>Model</dt><dd>Logistic Regression</dd></div>
+            </dl>
+          </div>
+        </div>
+      </header>
+
+      <div class="detail-content">
+        <div class="container detail-grid">
+          <aside class="toc" aria-label="페이지 목차">
+            <strong>Contents</strong>
+            <ol>
+              <li><a href="#topic">주제</a></li><li><a href="#analysis">분석 내용</a></li>
+              <li><a href="#method">분석 방법</a></li><li><a href="#result">분석 결과</a></li>
+              <li><a href="#contribution">내 기여도</a></li><li><a href="#resources">자료</a></li>
+            </ol>
+          </aside>
+
+          <article class="article">
+            <section class="article-section" id="topic">
+              <h2 class="numbered-title"><span>01</span> 주제</h2>
+              <p>
+                대출 승인 데이터에는 직업, 주거 형태, 대출 목적처럼 범주가 많은 변수가 포함됩니다.
+                이를 더미변수로 바꾸면 분석 변수 수가 크게 늘어나므로, 승인 여부와 관련된 정보를
+                유지하면서 차원을 줄이는 방법이 필요합니다.
+              </p>
+              <div class="highlight-box">
+                <strong>핵심 질문</strong><br />데이터의 전체 변동을 보존하는 PCA보다 목표변수와의
+                관계를 반영하는 감독형 차원축소가 대출 승인 예측에 더 적합한가?
+              </div>
+            </section>
+
+            <section class="article-section" id="analysis">
+              <h2 class="numbered-title"><span>02</span> 분석 내용</h2>
+              <p>
+                먼저 선행 연구의 DRA-CS 프레임워크와 MD-SDR 방법을 검토했습니다. MD-SDR은
+                Distance Covariance를 이용해 설명변수와 목표변수의 의존성을 보존하는 축을 찾는
+                감독형 차원축소 방법입니다. PCA가 설명변수의 분산을 기준으로 축을 만드는 것과
+                목적이 다릅니다.
+              </p>
+              <p>
+                실제 적용에는 45,000개 관측치로 구성된 Loan Approval Classification Dataset에서
+                분포의 대표성을 유지하도록 1,000개를 추출했습니다. 6개 범주형 변수와 8개 수치형
+                변수를 전처리한 뒤 MD-SDR과 PCA로 차원을 축소하고 동일한 로지스틱 회귀를 적합해
+                성능을 비교했습니다.
+              </p>
+            </section>
+
+            <section class="article-section" id="method">
+              <h2 class="numbered-title"><span>03</span> 분석 방법</h2>
+              <ol class="process">
+                <li><b>STEP 1</b><span>범주형·수치형 변수 전처리</span></li>
+                <li><b>STEP 2</b><span>MD-SDR과 PCA 차원 결정</span></li>
+                <li><b>STEP 3</b><span>로지스틱 회귀 적합</span></li>
+                <li><b>STEP 4</b><span>Accuracy·FDR·AUC 비교</span></li>
+              </ol>
+
+              <h3>차원축소</h3>
+              <ul>
+                <li>MD-SDR은 차원별 AUC를 비교해 4차원을 선택했습니다.</li>
+                <li>PCA는 누적 설명력 약 85%를 확보한 2차원과 MD-SDR과 같은 4차원을 비교했습니다.</li>
+                <li>MD-SDR 구현에서는 경사하강과 반복적 직교화를 사용해 직교 제약을 유지했습니다.</li>
+              </ul>
+
+              <h3>평가 기준</h3>
+              <p>
+                전체 분류 성능은 Accuracy로 확인했습니다. 대출 승인으로 예측한 대상 중 실제로는
+                미승인인 비율은 FDR로 측정했습니다. 승인하면 안 되는 대상을 승인하는 오류를
+                고려하기 위해 FDR을 핵심 지표로 두고, 클래스 구분 능력은 AUC로 함께 평가했습니다.
+              </p>
+            </section>
+
+            <section class="article-section" id="result">
+              <h2 class="numbered-title"><span>04</span> 분석 결과</h2>
+              <p>
+                MD-SDR은 1,000건 중 871건을 정확히 분류했습니다. 2차원 PCA는 845건, 4차원 PCA는
+                846건을 정확히 분류했습니다. MD-SDR은 Accuracy와 AUC가 가장 높았고, 잘못된 승인
+                예측의 비율인 FDR은 가장 낮았습니다.
+              </p>
+
+              <div class="metrics">
+                <div class="metric"><b>0.871</b><span>MD-SDR Accuracy</span></div>
+                <div class="metric"><b>0.212</b><span>MD-SDR FDR</span></div>
+                <div class="metric"><b>0.9202</b><span>MD-SDR AUC</span></div>
+              </div>
+
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr><th>방법</th><th>Accuracy</th><th>FDR</th><th>Recall</th><th>F1-score</th><th>AUC</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr class="best"><td>MD-SDR 4차원</td><td>0.871</td><td>0.212</td><td>0.681</td><td>0.731</td><td>0.9202</td></tr>
+                    <tr><td>PCA 2차원</td><td>0.845</td><td>0.272</td><td>0.507</td><td>0.600</td><td>0.8681</td></tr>
+                    <tr><td>PCA 4차원</td><td>0.846</td><td>0.286</td><td>0.537</td><td>0.613</td><td>0.8780</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <figure class="visual-card">
+                <img src="../assets/images/loan-result.png" alt="MD-SDR, PCA 2차원, PCA 4차원의 정오분류표와 성능 지표" />
+                <figcaption>세 차원축소 방법의 정오분류표와 성능 비교</figcaption>
+              </figure>
+
+              <p>
+                PCA는 데이터의 변동을 설명하는 데 초점을 두지만 MD-SDR은 대출 승인 여부와의
+                의존성을 직접 반영합니다. 실제 결과에서도 목표변수 정보를 보존한 축이 전체 정확도와
+                구분 능력을 높이고 잘못된 승인 예측을 줄였습니다.
+              </p>
+            </section>
+
+            <section class="article-section" id="contribution">
+              <h2 class="numbered-title"><span>05</span> 내 기여도</h2>
+              <p>
+                범주형과 수치형 변수가 혼합된 대출 승인 데이터를 분석 가능한 형태로 전처리하고,
+                PCA와 MD-SDR의 차원 결정 기준을 검토했습니다. 축소된 데이터에 동일한 로지스틱
+                회귀를 적용해 방법 간 비교가 가능하도록 분석 흐름을 구성했습니다.
+              </p>
+              <p>
+                단순히 Accuracy가 높은 방법을 선택하는 데서 끝내지 않고, 승인 예측 오류가 실제
+                리스크가 될 수 있다는 점을 반영해 FDR을 핵심 평가 기준으로 설정했습니다. AUC와
+                Recall도 함께 비교하여 MD-SDR이 목표변수와 관련된 정보를 더 잘 보존한다는 결과를
+                해석했습니다.
+              </p>
+              <div class="highlight-box">
+                차원축소의 목적을 변수 수 감소가 아니라 대출 승인과 관련된 정보의 보존으로 정의하고,
+                예측 목적에 맞는 지표로 방법을 비교했습니다.
+              </div>
+            </section>
+
+            <section class="article-section" id="resources">
+              <h2 class="numbered-title"><span>06</span> 프로젝트 자료</h2>
+              <p>팀 보고서와 참고 논문은 새 창에서 열리고, 전체 코드와 데이터는 ZIP으로 내려받을 수 있습니다.</p>
+              <div class="resource-grid">
+                <a class="resource-card" href="../assets/documents/loan-report.pdf" target="_blank" rel="noreferrer">
+                  <small>PDF</small><strong>팀 프로젝트 보고서</strong><span>방법론과 실제 적용 결과</span>
+                </a>
+                <a class="resource-card" href="../assets/documents/loan-reference-paper.pdf" target="_blank" rel="noreferrer">
+                  <small>PDF</small><strong>참고 논문 정리 자료</strong><span>DRA-CS와 MD-SDR 배경</span>
+                </a>
+                <a class="resource-card" href="../downloads/high-dimensional-full.zip" download>
+                  <small>ZIP</small><strong>전체 프로젝트 자료</strong><span>R 코드와 분석 데이터 포함</span>
+                </a>
+              </div>
+            </section>
+
+            <nav class="next-projects" aria-label="다른 프로젝트">
+              <p>다른 프로젝트</p>
+              <div class="next-links">
+                <a href="weather.html"><small>Urban Data Analysis</small>서울시 상권 취약성 진단</a>
+                <a href="churn.html"><small>Machine Learning</small>은행 고객 이탈 예측</a>
+              </div>
+            </nav>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer"><div class="container">© <span data-year>2026</span> Jiwon.</div></footer>
+  </body>
+</html>
