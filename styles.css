@@ -456,11 +456,8 @@ a {
   content: "";
 }
 
-.weather-cover {
-  background-image: url("assets/images/weather-map.png");
-  background-position: 78% center;
-  background-size: 178% auto;
-  background-repeat: no-repeat;
+.weather-cover img {
+  object-position: center;
 }
 
 .loan-cover img {
@@ -854,74 +851,11 @@ a {
   object-position: center;
 }
 
-.weather-figure-body {
-  display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(210px, 0.55fr);
-  min-height: 430px;
-  background: #f7f9fc;
-}
-
-.weather-map-crop {
-  min-height: 430px;
-  background-image: url("assets/images/weather-map.png");
-  background-position: 81% center;
-  background-size: 190% auto;
-  background-repeat: no-repeat;
-}
-
-.weather-legend {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 34px 26px;
-  border-left: 1px solid var(--line);
-  background: #fff;
-}
-
-.weather-legend-title {
-  margin-bottom: 22px;
-  color: var(--ink);
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.45;
-}
-
-.weather-legend ul {
-  display: grid;
-  gap: 13px;
-  list-style: none;
-}
-
-.weather-legend li {
-  display: grid;
-  grid-template-columns: 12px 1fr auto;
-  align-items: center;
-  gap: 9px;
-  color: #334155;
-  font-size: 13px;
-}
-
-.weather-legend li > span {
-  width: 12px;
-  height: 34px;
-  border-radius: 3px;
-  background: #1682f8;
-}
-
-.weather-legend li.unstable > span {
-  background: #7f8991;
-}
-
-.weather-legend li.growth > span {
-  background: #18a7bb;
-}
-
-.weather-legend li.vulnerable > span {
-  background: #ed3142;
-}
-
-.weather-legend small {
-  color: var(--muted);
+.visual-card.weather-visual img {
+  width: 100%;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
 }
 
 .visual-card figcaption {
@@ -1194,19 +1128,6 @@ tbody tr.best td {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .weather-figure-body {
-    grid-template-columns: 1fr;
-  }
-
-  .weather-map-crop {
-    min-height: 330px;
-    background-size: 200% auto;
-  }
-
-  .weather-legend {
-    border-top: 1px solid var(--line);
-    border-left: 0;
-  }
 }
 
 @media (max-width: 480px) {
@@ -1245,15 +1166,6 @@ tbody tr.best td {
     grid-template-columns: 1fr;
   }
 
-  .weather-map-crop {
-    min-height: 250px;
-    background-position: 79% center;
-    background-size: 210% auto;
-  }
-
-  .weather-legend {
-    padding: 25px 20px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
